@@ -1,0 +1,35 @@
+# apiVersion: extensions/v1beta1
+# kind: Ingress
+# metadata:
+#   name: workflowcamunda-ingress
+#   # namespace: {{ .Values.namespace }}
+#   labels:
+#     chart: workflowcamunda-1.0.0
+#   annotations:
+#     kubernetes.io/ingress.class: nginx
+#     nginx.ingress.kubernetes.io/configuration-snippet: |
+#       rewrite ^{{ .Values.ingress.path }}$ {{ .Values.ingress.path }}/app/ permanent;
+#       rewrite ^{{ .Values.ingress.path }}/$ {{ .Values.ingress.path }}/app/ permanent;
+# spec:
+#   rules:
+#     - http:
+#         paths:
+#           - path: "/workflowcamunda"
+#             backend:
+#               serviceName: workflowcamunda
+#               servicePort: 8080
+# ---
+
+# works without rewrites, redirects to
+# http://20.197.105.175/workflowcamunda/app/welcome/default/#!/login
+apiVersion: v1
+kind: Service
+metadata:
+  name: workflowcamunda
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: workflowcamunda

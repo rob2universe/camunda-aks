@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: workflowcamunda
+  # namespace: {{ .Values.namespace }}
+  labels:
+    chart: workflowcamunda-1.0.0
+spec:
+  selector:
+    app: workflowcamunda
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: ClusterIP

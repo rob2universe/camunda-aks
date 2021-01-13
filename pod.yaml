@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: workflowcamunda
+  labels:
+    chart: workflowcamunda-1.0.0
+spec:
+  selector:
+    matchLabels:
+      app: workflowcamunda
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: workflowcamunda
+    spec:
+      nodeSelector:
+        "kubernetes.io/os": linux
+      containers:
+        - name: workflowcamunda
+          image: robsacr.azurecr.io/camunda/camunda-bpm-platform:run-latest
+          imagePullPolicy: "IfNotPresent"
+          resources:
+            requests:
+              cpu: 250m
+              memory: 250M
+            limits:
+              cpu: 500m
+              memory: 500M
+          ports:
+            - containerPort: 8080
+          env:
+            - name: "camunda.bpm.webapp.application-path"
+              value: "/workflowcamunda"
