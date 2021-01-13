@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: camunda-bpm-run
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: camunda-bpm-run
+  template:
+    metadata:
+      labels:
+        app: camunda-bpm-run
+    spec:
+      nodeSelector:
+        "kubernetes.io/os": linux
+      containers:
+      - name: camunda-bpm-run
+        image: robsacr.azurecr.io/camunda/camunda-bpm-platform:run-latest
+        ports:
+        - containerPort: 8080
+          name: camunda-bpm-run
+        env:
+        - name: "camunda.bpm.webapp.application-path"
+          value: camundaworkflow
+        resources:
+          requests:
+            cpu: 250m
+            memory: 250m
+          limits:
+            cpu: 500m
+            memory: 500m
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: camunda-bpm-run
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: camunda-bpm-run
