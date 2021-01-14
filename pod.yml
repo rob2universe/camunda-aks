@@ -18,7 +18,8 @@ spec:
         "kubernetes.io/os": linux
       containers:
         - name: workflowcamunda
-          image: robsacr.azurecr.io/camunda/camunda-bpm-platform:run-latest
+          # image: camunda/camunda-bpm-platform:run-latest
+          image: robsacr.azurecr.io/camunda/camunda-vanilla-boot:7.14.0
           imagePullPolicy: "IfNotPresent"
           resources:
             requests:
