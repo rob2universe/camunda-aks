@@ -55,7 +55,7 @@ The EXTENRAL IP column will at first show *pending*, then a new row with the ext
 
 Check if you can access the Camunda Web application via the public IP of your load balancer. 
 
-In the *Kubernetes services* section of the Azure portal you can check the configured workloads, services and ingress and their status.
+In the *Kubernetes services* section of the Azure portal you can check the configured *workloads*, *services and ingresses* and their status. The *services and ingresses* also contains a link to the external IP under which the Camunda web application should be accessible.
 
 ## Cleanup
 
