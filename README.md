@@ -22,7 +22,8 @@ to clean the project, then build the Camunda Spring Boot jar (in
 *.\vanilla-spring-boot\target\camunda-vanilla-boot-7.14.0.jar*) and build and publish a Docke rimage based on it to your local Docker registry named robsacr.azurecr.io/camunda/camunda-vanilla-boot:7.14.0 (adjust docker.image.tag in [pom.xml line 15 ](.\vanilla-spring-boot\pom.xml) as desired).   
 
 
-In [.\createACRandPush.ps1](.\createACRandPush.ps1) adjust resource group name, container egistry name and image tag as desired.
+## Create an Azure container registry and push the image to it
+In [.\createACRandPush.ps1](.\createACRandPush.ps1) adjust resource group name, container registry name and image tag as desired.
 
 > $rgName = "rgaks"
 > 
@@ -32,11 +33,29 @@ In [.\createACRandPush.ps1](.\createACRandPush.ps1) adjust resource group name, 
 > 
 > docker push robsacr.azurecr.io/camunda/camunda-vanilla-boot:7.14.0
 > 
-then run [.\createACRandPush.ps1](.\createACRandPush.ps1) to create the resource group and container registry and push your image to the Azure container registry.
+then run `.\createACRandPush.ps1` to create the resource group and container registry and push your image to the Azure container registry.
 
+## Create Kubernetes Cluster, Pod, Service and Ingress
 
-## Simple Test
-Check if you can access the Camunda Web application via the the public IP of your load balancer.
+In [.\createCluster.ps1](.\createCluster.ps1) adjust resource group, container registry and cluster names as desired.
+
+> $rgName = "rgaks"
+> 
+> $acrName = "robsacr"
+> 
+> $clusterName = "camundaCluster"
+then run `.\createCluster.ps1` to create a new Kubernetes cluster and apply pod, service and ingress definitions to it.
+
+## Simple Tests
+
+You can check the results of the scripts via Azure CLI or in the [Azure portal](https://portal.azure.com/)
+
+The external IP will become visible in the console when the script and Azure proivisioning are completed.
+The EXTENRAL IP column will at first show *pending*, then a new row with the external IP will appear. This may take a few seconds or rarely even minutes.
+
+Check if you can access the Camunda Web application via the public IP of your load balancer. 
+
+In the *Kubernetes services* section of the Azure portal you can check the configured workloads, services and ingress and their status.
 
 ## Cleanup
 
