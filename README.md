@@ -19,7 +19,7 @@ The sub folder [.\vanilla-spring-boot](vanilla-spring-boot) contains a standard 
 Inside the [.\vanilla-spring-boot](vanilla-spring-boot) folder run 
 `mvn clean install` 
 to clean the project, then build the Camunda Spring Boot jar (in
-*.\vanilla-spring-boot\target\camunda-vanilla-boot-7.14.0.jar*) and build and publish a Docke rimage based on it to your local Docker registry named robsacr.azurecr.io/camunda/camunda-vanilla-boot:7.14.0 (adjust docker.image.tag in [pom.xml line 15 ](.\vanilla-spring-boot\pom.xml) as desired).   
+*.\vanilla-spring-boot\target\camunda-vanilla-boot-7.14.0.jar*) and build and publish a Docke rimage based on it to your local Docker registry named robsacr.azurecr.io/camunda/camunda-vanilla-boot:7.14.0 (adjust docker.image.tag in [pom.xml line 15 ](vanilla-spring-boot\pom.xml) as desired).   
 
 
 ## Create an Azure container registry and push the image to it
