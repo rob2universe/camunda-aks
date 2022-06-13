@@ -1,4 +1,4 @@
-# Camunda Spring Boot deployment on Azure Kubernetes Service (AKS)
+# Camunda 7 Spring Boot deployment on Azure Kubernetes Service (AKS) (not for Camunda 8)
 This project illustrates how 
 - a docker image based on a  [Camunda BPM Spring Boot](https://docs.camunda.org/get-started/spring-boot/) project is built,
 - the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) is used to create an Azure Container Reqgistry (ACR) and to push the image to it
